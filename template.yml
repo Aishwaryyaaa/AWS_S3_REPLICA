@@ -1,9 +1,0 @@
-- name: fortemplate
-  hosts: all
-  become: true
-  vars:
-    place: 'bot'
-  tasks:
-  - template:
-      src: demo.txt
-      dest: /home/new.txt

@@ -1,8 +1,0 @@
-- name: Playbook1
-  hosts: localhost
-  # vars: 
-  #   URL: cloudblitz.in
-  tasks:
-  - name: Print messages_1
-    debug:
-      msg: "{hoii}"

@@ -1,7 +1,0 @@
----
-- name: Playbook1
-  hosts: all
-  tasks:
-  - name: Print a simple statement
-    debug:
-      msg: "Hello World! Welcome to Linuxtechi"

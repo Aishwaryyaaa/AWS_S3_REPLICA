@@ -1,9 +1,0 @@
-- name: block
-  hosts: all
-  become: true
-  tasks:
-  - lineinfile:
-      path: /mnt/myblock.txt
-      create: yes
-      line:
-         15 20 nilam

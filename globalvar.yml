@@ -1,8 +1,0 @@
-- name: ashplay
-  hosts: all
-  vars:
-   URL: noname.in
-  tasks: 
-   - name: anything
-     debug:
-      msg: "{{URL}}"
