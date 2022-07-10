@@ -12,7 +12,7 @@
 
 #add lines to file
 - name: Insert/Update HTML surrounded by custom markers after <body> line
-  ansible.builtin.blockinfile:
+  blockinfile:
     path: /mnt/apache-tomcat-8.5.81/conf/context.xml
     marker: "<!-- {mark} ANSIBLE MANAGED BLOCK -->"
     insertafter: "<Context>"
