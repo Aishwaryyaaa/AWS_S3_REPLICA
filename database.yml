@@ -1,0 +1,33 @@
+#create role and mention it in our yaml file
+
+#rolefile/tasks/main.yml
+- name: update
+  apt: 
+    upgrade: yes
+    update_cache: yes
+- name: install mysql
+  apt:
+    name: mysql-server
+    state: latest
+
+#add lines to file
+- name: Insert/Update HTML surrounded by custom markers after <body> line
+  ansible.builtin.blockinfile:
+    path: /mnt/apache-tomcat-8.5.81/conf/context.xml
+    marker: "<!-- {mark} ANSIBLE MANAGED BLOCK -->"
+    insertafter: "<Context>"
+    block: |
+      <Context>
+      <Resource name="jdbc/TestDB" auth="Container" type="javax.sql.DataSource"
+      maxTotal="100" maxIdle="30" maxWaitMillis="10000"
+      username="admin" password="aishwarya19" driverClassName="com.mysql.jdbc.Driver"
+      url="jdbc:mysql:// database-my.cwj1422nm29j.ap-northeast-1.rds.amazonaws.com:3306/studentapp"/>
+
+#place jdbc connector
+- name: .jar file in remote
+  copy:
+    src: /home/ubuntu/mysql-connector.jar
+    dest: /mnt/apache-tomcat-8.5.81/lib
+    remote_src: true
+
+#create database
