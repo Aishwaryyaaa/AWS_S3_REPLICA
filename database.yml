@@ -2,7 +2,7 @@
 
 #rolefile/tasks/main.yml
 - name: update
-  apt: 
+  apt:
     upgrade: yes
     update_cache: yes
 - name: install mysql
@@ -26,8 +26,7 @@
 #place jdbc connector
 - name: .jar file in remote
   copy:
-    src: /home/ubuntu/mysql-connector.jar
-    dest: /mnt/apache-tomcat-8.5.81/lib
-    remote_src: true
+    src: mysql-connector.jar
+    dest: /mnt/apache-tomcat-8.5.81/lib/
 
-#create database
+# create database
