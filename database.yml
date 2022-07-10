@@ -23,7 +23,7 @@
       username="admin" password="aishwarya19" driverClassName="com.mysql.jdbc.Driver"
       url="jdbc:mysql:// database-my.cwj1422nm29j.ap-northeast-1.rds.amazonaws.com:3306/studentapp"/>
 
-#place jdbc connector
+#place jdbc connector [moba===> mv /home/ubuntu/mysql-connector.jar (tomcat_git_dir)]
 - name: .jar file in remote
   copy:
     src: mysql-connector.jar
