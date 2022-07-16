@@ -14,5 +14,12 @@ pipeline {
                 sh 'sudo apt-get install maven -y'
             }
         }
+        stage ('install tomcat'){
+            steps {
+                sh 'sudo apt update'
+                sh 'sudo wget https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.81/bin/apache-tomcat-8.5.81.tar.gz'
+                sh 'sudo tar -xvzf apache-tomcat-8.5.81.tar.gz'
+            }
+        }
     }
     }
