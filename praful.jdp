@@ -20,13 +20,13 @@ pipeline {
         stage('Tomcat_Install') {
             steps {
                 sh 'sudo wget https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.81/bin/apache-tomcat-8.5.81.tar.gz'
-                sh 'sudo tar -xvzf /home/ubuntu/workspace/pipeline_for_maven/apache-tomcat-8.5.81.tar.gz -C /mnt'
+                sh 'sudo tar -xvzf /home/ubuntu/workspace/maven/apache-tomcat-8.5.81.tar.gz -C /mnt'
                 sh 'sudo /mnt/apache-tomcat-8.5.81/bin/catalina.sh start'
             }
         }
         stage('Copy_Student_war') {
             steps {
-                sh 'sudo cp /home/ubuntu/workspace/pipeline_for_maven/target/studentapp-2.2-SNAPSHOT.war /mnt/apache-tomcat-8.5.81/webapps/'
+                sh 'sudo cp /home/ubuntu/workspace/maven/target/studentapp-2.2-SNAPSHOT.war /mnt/apache-tomcat-8.5.81/webapps/'
                 }
         }
     }
