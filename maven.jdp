@@ -1,0 +1,18 @@
+pipeline {
+    agent {
+        lable 'maven'
+          }
+    stages {
+        stage ('gitpull'){
+            steps {
+                git 'git@github.com:vishalsontakke26/student-ui.git'
+            }
+        }
+        stage ('install maven'){
+            steps {
+                sh 'apt apdate'
+                sh 'apt install maven'
+            }
+        }
+    }
+    }
