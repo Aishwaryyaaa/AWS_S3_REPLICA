@@ -21,5 +21,11 @@ pipeline {
                 sh 'sudo tar -xvzf apache-tomcat-8.5.81.tar.gz'
             }
         }
+        stage ('start tomcat maven'){
+            steps {
+                sh 'mvn clean package'
+                sh 'nohup /home/ubuntu/workspace/maven/apache-tomcat-8.5.81/bin/startup.sh &'
+            }
+        }
     }
     }
