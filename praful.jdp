@@ -1,0 +1,33 @@
+pipeline {
+    agent {label 'N1'}
+
+    stages {
+        stage('gitpull') {
+            steps {
+                git 'https://github.com/praful31/studentapp-ui.git'
+            }
+        }
+        stage('Maven_Install') {
+            steps {
+                sh 'sudo -i'
+                sh 'sudo apt update'
+                sh 'sudo apt install openjdk-11-jre-headless -y '
+                sh 'sudo apt install maven -y'
+                sh 'sudo mvn clean package' 
+                sh 'sudo apt update' 
+            }
+        }
+        stage('Tomcat_Install') {
+            steps {
+                sh 'sudo wget https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.81/bin/apache-tomcat-8.5.81.tar.gz'
+                sh 'sudo tar -xvzf /home/ubuntu/workspace/pipeline_for_maven/apache-tomcat-8.5.81.tar.gz -C /mnt'
+                sh 'sudo /mnt/apache-tomcat-8.5.81/bin/catalina.sh start'
+            }
+        }
+        stage('Copy_Student_war') {
+            steps {
+                sh 'sudo cp /home/ubuntu/workspace/pipeline_for_maven/target/studentapp-2.2-SNAPSHOT.war /mnt/apache-tomcat-8.5.81/webapps/'
+                }
+        }
+    }
+}
