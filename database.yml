@@ -9,6 +9,11 @@
   apt:
     name: mysql-server
     state: latest
+- name: service start and enable
+  service:
+    name: mysql
+    state: started
+    enabled: true
 
 #add lines to file
 - name: Insert/Update HTML surrounded by custom markers after <body> line
@@ -29,4 +34,32 @@
     src: mysql-connector.jar
     dest: /mnt/apache-tomcat-8.5.81/lib/
 
-# create database
+#got an error of"The PyMySQL (Python 2.7 and Python 3.X) or MySQL-python (Python 2.X) module is required."}
+- name: install Python
+  apt:
+    name: python
+    state: latest
+- name: install pip
+  apt:
+    name: python3-pip
+    state: latest
+- name: install PyMySQL through pip (package installer for python)
+  ansible_python_interpreter: /usr/bin/python3
+  pip:
+    name: pymysql
+    state: latest
+
+#create data base with help of mysql module
+- name: update mysql root password for all root accounts  
+  mysql_user:    
+    login_user: admin  
+    login_password: aishwarya19  
+    check_implicit_admin: yes  
+    priv: "*.*:ALL,GRANT"
+
+- name: create a new database  
+  mysql_db: name=studentapp state=present login_user=admin login_password=aishwarya19  
+- name: add sample data to database  
+  copy: src=data.sql dest=/tmp/data.sql  
+- name: insert sample data into database  
+  mysql_db: name=studentapp state=import target=/tmp/data.sql login_user=admin login_password=aishwarya19
