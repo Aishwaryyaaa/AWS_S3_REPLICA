@@ -1,11 +1,11 @@
 pipeline {
     agent {
-        lable 'maven'
+        label 'maven'
           }
     stages {
         stage ('gitpull'){
             steps {
-                git 'git@github.com:vishalsontakke26/student-ui.git'
+                git 'https://github.com/Aishwaryyaaa/student-ui.git'
             }
         }
         stage ('install maven'){
