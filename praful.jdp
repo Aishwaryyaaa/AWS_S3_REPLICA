@@ -1,5 +1,5 @@
 pipeline {
-    agent {label 'N1'}
+    agent {label 'maven'}
 
     stages {
         stage('gitpull') {
