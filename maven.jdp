@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage ('gitpull'){
             steps {
-                git 'git@github.com:Aishwaryyaaa/student-ui.git'
+                git 'https://github.com/Aishwaryyaaa/student-ui.git'
             }
         }
         stage ('install maven'){
