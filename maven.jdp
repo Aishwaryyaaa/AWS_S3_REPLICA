@@ -24,7 +24,7 @@ pipeline {
         stage ('start tomcat maven'){
             steps {
                 sh 'mvn clean package'
-                keepRunning sh 'nohup /home/ubuntu/workspace/maven/apache-tomcat-8.5.81/bin/startup.sh &'
+                keepRunning {sh 'nohup /home/ubuntu/workspace/maven/apache-tomcat-8.5.81/bin/startup.sh &'}
             }
         }
     }
