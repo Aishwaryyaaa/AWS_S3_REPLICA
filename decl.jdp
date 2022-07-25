@@ -1,8 +1,0 @@
-node {
-        stage('Build') {
-                sh 'echo hello world >> file1'
-                  }
-        stage('kuchbhi') {
-                sh 'echo duniya ko namaskar >> file10'
-                  }
-      }
