@@ -1,0 +1,40 @@
+CREATE 1 BUCKET ON SOURCE  (SBUCKET)
+CREATE 1 BUCKET ON DESTINATION ACCOUNT (DBUCKET)
+(ENABLE VERSIONING ON BOTH BUCKETS)
+
+SBUCKET - CREATE REPLICATION RULE (IAM ROLE -select- CREATE NEW ROLE)
+
+DBUCKET - BUCKET POLICY - (ref docs)
+{
+    "Version": "2012-10-17",
+    "Id": "",
+    "Statement": [
+        {
+            "Sid": "SET",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::444908225573:role/service-role/s3crr_role_for_test-rep-1_1"  ##role arn which is created with SBUCKET 
+            },
+            "Action": [
+                "s3:ReplicateObject",
+                "s3:ReplicateDelete"
+            ],
+            "Resource": "arn:aws:s3:::DBUCKET/*"  ##arn of destination bucket
+        },
+        {
+            "Sid": "SET2",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::444908225573:role/service-role/s3crr_role_for_test-rep-1_1"  ##role arn which is created with SBUCKET 
+            },
+            "Action": [
+                "s3:List*",
+                "s3:GetBucketVersioning",
+                "s3:PutBucketVersioning"
+            ],
+            "Resource": "arn:aws:s3:::DBUCKET"   ##arn of destination bucket
+        }
+    ]
+}
+
+SBUCKET - UPLOAD A FILE --> CHECK IN DBUCKET (IT WILL TAKE COUPLE OF MIN.)
